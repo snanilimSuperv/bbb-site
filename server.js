@@ -32,13 +32,39 @@ mongoose.connection.on('error', function() {
     process.exit(1);
 });
 
+
+
+const hbs = exphbs.create({
+    defaultLayout: 'main',
+    helpers: {
+      ifeq: function(a, b, options) {
+        if (a === b) {
+          return options.fn(this);
+        }
+        return options.inverse(this);
+      },
+      toJSON : function(object) {
+        return JSON.stringify(object);
+      }
+    }
+});
+
+
+
+
+app.engine('handlebars', hbs.engine);
+app.set('view engine', 'handlebars');
 app.set('port', process.env.PORT || 3000);
 app.use(compression());
+app.use(sass({ src: path.join(__dirname, 'public'), dest: path.join(__dirname, 'public') }));
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(expressValidator());
 app.use(cookieParser());
+app.use(express.static(path.join(__dirname, 'public')));
+
+
 
 
 //  =+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+ Model Load Start  =+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+ // 
