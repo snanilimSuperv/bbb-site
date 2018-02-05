@@ -1,16 +1,19 @@
-import 'whatwg-fetch';
-import React from 'react';
-import ReactDOM from 'react-dom';
-import { Provider } from 'react-redux'
-import { Router, browserHistory } from 'react-router';
+import React from "react";
+import { render } from "react-dom";
+import { Provider } from "react-redux";
+import { BrowserRouter } from "react-router-dom";
 import configureStore from './store/configureStore';
-import getRoutes from './routes';
+import App from "./App";
+
+
 
 const store = configureStore(window.INITIAL_STATE);
 
-ReactDOM.render(
+render(
   <Provider store={store}>
-    <Router history={browserHistory} routes={getRoutes(store)}/>
+    <BrowserRouter>
+      <App />
+    </BrowserRouter>
   </Provider>,
-  document.getElementById('app')
+  document.getElementById("root")
 );
