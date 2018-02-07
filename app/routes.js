@@ -5,6 +5,7 @@ const routes = [
   {
     path: "/",
     exact: true,
+    matches: args => checkAuth(args),
     component: Home
   },
   {
