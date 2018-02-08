@@ -1,16 +1,15 @@
-import Home from "./components/Home";
-import Header from "./components/Header";
+import Home from "./home";
+import News from "./news";
 
 const routes = [
   {
     path: "/",
     exact: true,
-    matches: args => checkAuth(args),
     component: Home
   },
   {
-    path: "/header",
-    component: Header
+    path: "/news",
+    component: News
   }
 ];
 

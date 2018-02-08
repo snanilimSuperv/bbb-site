@@ -2,11 +2,11 @@ const webpack = require("webpack");
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
 const autoprefixer = require("autoprefixer");
 
-const frontConfig = {
-  entry: "./app/main.js",
+const browserConfig = {
+  entry: "./app/shared/main.js",
   output: {
     path: __dirname,
-    filename: "./public/js/bundle.js"
+    filename: "./public/bundle.js"
   },
   devtool: "cheap-module-source-map",
   module: {
@@ -87,4 +87,4 @@ const serverConfig = {
   }
 };
 
-module.exports = [frontConfig, serverConfig];
+module.exports = [browserConfig, serverConfig];
